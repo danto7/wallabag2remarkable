@@ -11,6 +11,6 @@ RUN bundle config set --local deployment 'true' && \
     bundler install && \
     mkdir -p config
 ENV CONFIG_FILE="/app/config/config.json" RMAPI_CONFIG="/app/config/rmapi"
-VOLUME /app/config
+VOLUME /app/config /app/.cache/rmapi
 COPY *.rb ./
 CMD ["ruby", "./run.rb"]
