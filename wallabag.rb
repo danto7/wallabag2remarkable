@@ -33,7 +33,7 @@ class Wallabag
         }.to_json
       end
     end
-    raise "authentication failed" unless res.success?
+    raise "authentication failed: #{res.body}" unless res.success?
     body = JSON.parse(res.body)
     config.refresh_token = body["refresh_token"]
     conn.headers["Authorization"] = "Bearer #{body["access_token"]}"
