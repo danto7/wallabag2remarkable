@@ -1,4 +1,5 @@
 FROM ruby:3-buster
+COPY ./rmapi /usr/local/bin/
 RUN mkdir /app && \
     groupadd ruby && \
     useradd --home-dir /app -g ruby ruby && \

@@ -2,3 +2,4 @@
 config.json
 *.epub
 *.pdf
+/rmapi
