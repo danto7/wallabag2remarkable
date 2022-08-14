@@ -10,7 +10,7 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle config set --local deployment 'true' && \
     bundler install && \
     mkdir -p /app/config /app/.cache/rmapi
-ENV CONFIG_FILE="/app/config/config.json" RMAPI_CONFIG="/app/config/rmapi" XDG_CACHE_HOME="/app/config"
+ENV CONFIG_FILE="/app/config/config.json" RMAPI_CONFIG="/app/config/rmapi.conf" XDG_CACHE_HOME="/app/config"
 VOLUME /app/config
 COPY *.rb ./
 CMD ["ruby", "./run.rb"]
