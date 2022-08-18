@@ -12,7 +12,11 @@ class Wallabag
       url: "https://wallabag.d-jensen.de",
       headers: {"Content-Type" => "application/json"}
     )
+  end
+
+  def authenticate!
     conn.headers["Authorization"] = "Bearer #{access_token}"
+    true
   end
 
   def access_token

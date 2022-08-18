@@ -14,8 +14,9 @@ end
 ID_REGEX = /__(\d+)$/
 
 config = Config.load(ENV.fetch("CONFIG_FILE", "config.json"))
+wallabag = Wallabag.new(config)
 begin
-  wallabag = Wallabag.new(config)
+  wallabag.authenticate!
 rescue RuntimeError => e
   raise e if e.message != "authentication failed"
   puts ">> refresh_token expired. clearing refresh_token"
