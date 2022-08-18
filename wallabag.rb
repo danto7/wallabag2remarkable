@@ -1,19 +1,29 @@
+require "active_support"
+require "active_support/core_ext"
+require "faraday"
+require "faraday/net_http"
+
 class Wallabag
   attr_reader :conn, :config
 
   def initialize(config)
+    @config = config
     @conn = Faraday.new(
       url: "https://wallabag.d-jensen.de",
       headers: {"Content-Type" => "application/json"}
     )
-    @config = config
+    conn.headers["Authorization"] = "Bearer #{access_token}"
   end
 
-  def authenticate!
+  def access_token
+    puts "use existing access token" if config.access_token_valid?
+    return config.access_token if config.access_token_valid?
+
     client_id = ENV.fetch("CLIENT_ID") { raise "no CLIENT_ID provided" }
     client_secret = ENV.fetch("CLIENT_SECRET") { raise " no CLIENT_SECRET provided" }
 
-    res = if config.refresh_token?
+    response = if config.refresh_token?
+      puts "refresh token"
       conn.post("/oauth/v2/token") do |req|
         req.body = {
           grant_type: "refresh_token",
@@ -23,6 +33,7 @@ class Wallabag
         }.to_json
       end
     else
+      puts "new access token"
       conn.post("/oauth/v2/token") do |req|
         req.body = {
           grant_type: "password",
@@ -33,11 +44,13 @@ class Wallabag
         }.to_json
       end
     end
-    raise "authentication failed: #{res.body}" unless res.success?
-    body = JSON.parse(res.body)
+
+    raise "authentication failed: #{res.body}" unless response.success?
+
+    body = JSON.parse(response.body)
     config.refresh_token = body["refresh_token"]
-    conn.headers["Authorization"] = "Bearer #{body["access_token"]}"
-    ""
+    config.access_token_timeout = body["expires_in"].seconds.from_now.utc
+    config.access_token = body["access_token"]
   end
 
   def entries
@@ -65,7 +78,7 @@ class Wallabag
     res.body
   end
 
-def unarchive_entry(id)
+  def unarchive_entry(id)
     res = conn.patch("/api/entries/#{id}.json") do |req|
       req.body = {
         archive: 0
