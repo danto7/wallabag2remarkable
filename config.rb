@@ -1,4 +1,4 @@
-Config = Struct.new(:filename, :refresh_token, :access_token, :access_token_timeout, :entry_ids, keyword_init: true) do
+Config = Struct.new(:filename, :refresh_token, :access_token, :access_token_timeout, :entry_ids, :last_full_update, keyword_init: true) do
   def refresh_token?
     refresh_token.present?
   end
@@ -25,5 +25,6 @@ def Config.load(filename)
   end
   config.filename = filename
   config.entry_ids ||= []
+  config.last_full_update = Time.parse(config.last_full_update) if config.last_full_update.is_a? String
   config
 end
