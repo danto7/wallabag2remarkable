@@ -8,8 +8,9 @@ class Wallabag
 
   def initialize(config)
     @config = config
+    site_url = ENV.fetch("WALLABAG_URL") { raise "no WALLABAG_URL provided" }
     @conn = Faraday.new(
-      url: "https://wallabag.d-jensen.de",
+      url: site_url,
       headers: {"Content-Type" => "application/json"}
     )
   end

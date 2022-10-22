@@ -28,6 +28,8 @@ remarkable = Remarkable.new
 
 w_entries = wallabag.entries
 
+w_entries.reject! { |e| e["tags"].map { |t| t["label"] }.include?("video") }
+
 new_entries = w_entries.reject { |entry| config.entry_ids.include? entry["id"] }
 
 if new_entries.empty? && config.last_full_update.present? && config.last_full_update > 5.minutes.ago

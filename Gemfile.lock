@@ -28,6 +28,7 @@ GEM
       concurrent-ruby (~> 1.0)
 
 PLATFORMS
+  arm64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
@@ -37,4 +38,4 @@ DEPENDENCIES
   pry-byebug
 
 BUNDLED WITH
-   2.3.7
+   2.3.23
