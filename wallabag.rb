@@ -50,7 +50,7 @@ class Wallabag
       end
     end
 
-    raise "authentication failed: #{res.body}" unless response.success?
+    raise "authentication failed: #{response.body}" unless response.success?
 
     body = JSON.parse(response.body)
     config.refresh_token = body["refresh_token"]
