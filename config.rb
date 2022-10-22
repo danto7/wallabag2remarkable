@@ -6,7 +6,7 @@ Config = Struct.new(:filename, :refresh_token, :access_token, :access_token_time
   def save!
     config = to_h
     config.delete(:filename)
-    File.write(filename, config.to_json)
+    File.write(filename, JSON.pretty_generate(config))
   end
 
   def access_token_valid?
