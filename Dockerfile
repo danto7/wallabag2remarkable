@@ -1,4 +1,8 @@
 FROM ruby:3-buster
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y vim && \
+    apt-get clean -y
 COPY ./rmapi /usr/local/bin/
 RUN mkdir /app && \
     groupadd ruby && \
