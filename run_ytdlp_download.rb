@@ -7,7 +7,7 @@ def run_ytdlp_download(wallabag)
 
   video_entries.each do |entry|
     puts "> start video download: #{entry["title"]}"
-    url = entry["origin_url"]
+    url = entry["origin_url"] || entry["given_url"]
 
     yt.download(url, out_dir + "/")
     wallabag.archive_entry entry["id"] unless dry_run?
