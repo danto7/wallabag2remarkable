@@ -10,6 +10,6 @@ def run_ytdlp_download(wallabag)
     url = entry["origin_url"]
 
     yt.download(url, out_dir + "/")
-    wallabag.archive_entry entry["id"] if dry_run?
+    wallabag.archive_entry entry["id"] unless dry_run?
   end
 end
