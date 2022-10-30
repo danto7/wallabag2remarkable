@@ -3,9 +3,9 @@
 container_tag="wallabag2remarkable"
 
 function download_rmapi() {
-  version="0.0.20"
+  version="0.0.22.1"
   url="https://github.com/juruen/rmapi/releases/download/v$version/rmapi-linuxx86-64.tar.gz"
-  checksum="2ab275c838eed7254d363e9623f04062d4f45132fc1f00ddfcf7b5458720a958"
+  checksum="e98999afb4c90c0352bf8c7f05b32013b724d249374bf42d551b1c7dbe657b15"
 
   echo "> Downloading rmapi in version $version"
   tmp="$(mktemp)"
