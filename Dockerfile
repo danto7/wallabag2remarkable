@@ -15,7 +15,7 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle config set --local deployment 'true' && \
     bundler install && \
     mkdir -p /app/config /app/.cache/rmapi /app/video_download
-ENV CONFIG_FILE="/app/config/config.json" RMAPI_CONFIG="/app/config/rmapi.conf" XDG_CACHE_HOME="/app/config" YT_DOWNLOAD_URL="/app/video_download"
+ENV CONFIG_FILE="/app/config/config.json" RMAPI_CONFIG="/app/config/rmapi.conf" XDG_CACHE_HOME="/app/config" YT_DOWNLOAD_DIR="/app/video_download"
 VOLUME /app/config
 COPY *.rb ./
 CMD ["ruby", "./run.rb"]
