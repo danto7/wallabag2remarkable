@@ -1,5 +1,3 @@
-require "sambal"
-
 class Ytdlp
   @sponsorblock = "--sponsorblock-remove=sponsor --sponsorblock-mark=all"
 

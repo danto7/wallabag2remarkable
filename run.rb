@@ -8,7 +8,6 @@ require_relative "./ytdlp"
 require_relative "./run_wallabag_sync"
 require_relative "./run_ytdlp_download"
 
-require "pry"
 Faraday.default_adapter = :net_http
 
 ID_REGEX = /__(\d+)$/
