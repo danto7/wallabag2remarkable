@@ -3,9 +3,10 @@ def run_ytdlp_download(wallabag)
   yt = Ytdlp.new
   video_entries = wallabag.entries(video_tag: true)
   video_entries = video_entries.take(1) if dry_run?
+  puts "Found #{video_entries.size} entries"
 
   video_entries.each do |entry|
-    puts "> start video download #{entry["title"]}"
+    puts "> start video download: #{entry["title"]}"
     url = entry["origin_url"]
 
     yt.download(url, out_dir + "/")
