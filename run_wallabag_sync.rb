@@ -1,4 +1,6 @@
-def run_wallabag_sync(remarkable, wallabag)
+def run_wallabag_sync(wallabag, config)
+  remarkable = Remarkable.new
+
   w_entries = wallabag.entries
 
   w_entries.reject! { |e| e["tags"].map { |t| t["label"] }.include?("video") }

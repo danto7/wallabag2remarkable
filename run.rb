@@ -23,10 +23,8 @@ rescue RuntimeError => e
   wallabag.authenticate!
 end
 
-remarkable = Remarkable.new
-
 puts "--> Start wallabag sync"
-run_wallabag_sync(remarkable, wallabag)
+run_wallabag_sync(wallabag, config)
 
 puts "--> Start yt-dlp"
 run_ytdlp_download(wallabag)
