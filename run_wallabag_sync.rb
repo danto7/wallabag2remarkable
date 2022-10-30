@@ -1,3 +1,5 @@
+ID_REGEX = /__(\d+)$/
+
 def run_wallabag_sync(wallabag, config)
   remarkable = Remarkable.new
 

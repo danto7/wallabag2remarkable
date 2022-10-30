@@ -10,8 +10,6 @@ require_relative "./run_ytdlp_download"
 
 Faraday.default_adapter = :net_http
 
-ID_REGEX = /__(\d+)$/
-
 config = Config.load(ENV.fetch("CONFIG_FILE", "config.json"))
 wallabag = Wallabag.new(config)
 begin
