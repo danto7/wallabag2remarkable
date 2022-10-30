@@ -58,10 +58,11 @@ class Wallabag
     config.access_token = body["access_token"]
   end
 
-  def entries
+  def entries(video_tag: false)
     res = conn.get("/api/entries.json") do |req|
       req.params["archive"] = 0
       req.params["perPage"] = 100
+      req.params["tags"] = "video" if video_tag
     end
     raise "fetch entries failed" unless res.success?
     JSON.parse(res.body)["_embedded"]["items"]
