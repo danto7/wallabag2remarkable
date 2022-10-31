@@ -1,4 +1,4 @@
-OPTIONS = "--sponsorblock-mark default --embed-thumbnail --recode-video mkv"
+OPTIONS = '--sponsorblock-mark default --embed-thumbnail --recode-video mkv -S "res:1440,fps"'
 
 class Ytdlp
   def download(url, out_dir)
