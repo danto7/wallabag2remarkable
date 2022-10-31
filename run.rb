@@ -15,7 +15,7 @@ wallabag = Wallabag.new(config)
 begin
   wallabag.authenticate!
 rescue RuntimeError => e
-  raise e if e.message != "authentication failed"
+  raise e if e.message.include? "authentication failed"
   puts ">> refresh_token expired. clearing refresh_token"
   config.refresh_token = nil
   wallabag.authenticate!
