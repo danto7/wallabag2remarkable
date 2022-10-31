@@ -1,4 +1,4 @@
-SPONSORBLOCK = "--recode-video mkv --sponsorblock-remove sponsor --sponsorblock-mark default --embed-thumbnail"
+SPONSORBLOCK = "--force-keyframes-at-cuts --sponsorblock-remove sponsor --sponsorblock-mark default --embed-thumbnail"
 
 class Ytdlp
   def download(url, out_dir)
