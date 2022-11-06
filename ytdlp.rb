@@ -1,4 +1,4 @@
-OPTIONS = '--sponsorblock-mark sponsor --embed-thumbnail -S "res:1440,fps"'
+OPTIONS = '--sponsorblock-mark sponsor -S "res:1440,fps"'
 
 class Ytdlp
   def download(url, out_dir)
